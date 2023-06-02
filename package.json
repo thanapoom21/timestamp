@@ -1,0 +1,29 @@
+{
+  "name": "timestamp",
+  "version": "1.0.0",
+  "description": "Backend project involving JavaScript for functionality. Request and response are used frequently.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "timestamp",
+    "date",
+    "express",
+    "cors"
+  ],
+  "author": "Thanapoom Phithakjarukorn",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thanapoom21/timestamp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thanapoom21/timestamp/issues"
+  },
+  "homepage": "https://github.com/thanapoom21/timestamp#readme"
+}
