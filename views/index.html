@@ -32,6 +32,7 @@
     </p>
   </div>
   <hr />
+
   <div class="container">
     <h1>Request Header Parser Microservice</h1>
 
@@ -52,6 +53,7 @@
     </p>
   </div>
   <hr />
+
   <div class="container">
     <h1>URL Shortener Microservice</h1>
     <form action="api/shorturl" method="POST">
@@ -59,11 +61,37 @@
         <legend>URL Shortener</legend>
         <label for="url_input">URL:</label>
         <input id="url_input" type="text" name="url" placeholder="https://www.freecodecamp.org/" />
-        <input type="submit" value="POST URL" />
+        <input type="submit" value="Post" />
       </fieldset>
     </form>
   </div>
   <hr />
+
+  <div class="container">
+    <h1>Exercise tracker</h1>
+    <form action="/api/users" method="post">
+      <h3>Create a New User</h3>
+      <p><code>POST /api/users</code></p>
+      <input id="uname" type="text" name="username" placeholder="username" />
+      <input type="submit" value="Submit" />
+    </form>
+    <form id="exercise-form" method="post">
+      <h3>Add exercises</h3>
+      <p><code>POST /api/users/:_id/exercises</code></p>
+      <input id="uid" type="text" name=":_id" placeholder=":_id" />
+      <input id="desc" type="text" name="description" placeholder="description*" />
+      <input id="dur" type="text" name="duration" placeholder="duration* (mins.)" />
+      <input id="date" type="text" name="date" placeholder="date (yyyy-mm-dd)" />
+      <input type="submit" value="Submit" />
+    </form>
+    <p>
+      <strong>GET user's exercise log: </strong>
+      <code>GET /api/users/:_id/logs?[from][&amp;to][&amp;limit]</code>
+    </p>
+    <p><strong>[ ]</strong> = optional</p>
+    <p><strong>from, to</strong> = dates (yyyy-mm-dd); <strong>limit</strong> = number</p>
+  </div>
+
   <div class="footer">
     <p>
       By <a href="https://www.freecodecamp.org/">freeCodeCamp.org</a>
