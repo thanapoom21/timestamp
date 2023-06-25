@@ -2,16 +2,24 @@
 // where your node app starts
 
 // init project
-let express = require("express");
-let app = express();
-
+const express = require("express");
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
+const cors = require("cors");
+const app = express();
+const bodyParser = require("body-parser")
+const dns = require('dns')
+
 // so that your API is remotely testable by FCC
-let cors = require("cors");
 app.use(cors({ optionsSuccessStatus: 200 })); // some legacy browsers choke on 204
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static("public"));
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", (req, res) => {
@@ -54,6 +62,49 @@ app.get('/api/whoami', (req, res) => {
     software: req.headers["user-agent"]
   });
 });
+
+let urls = []
+
+app.post('/api/shorturl', (req, res) => {
+  let url = req.body.url
+  let urlNoTrailingSlash = url.replace(/\/*$/, '')
+  let domainWithPath = urlNoTrailingSlash.replace(/^https?:\/\//, '')
+  let domainName = domainWithPath.split('/')[0]
+
+  if (domainName == "") {
+    res.json(`Domain name is not provided.`)
+  } else {
+    dns.lookup(domainName, (err, address, family) => {
+      if (err || !address) {
+        res.json({error: "Invalid URL"})
+      } else {
+        let newURL = {
+          original_url: url,
+          short_url: urls.length
+        }
+  
+        urls.push(newURL)
+        res.json(newURL)
+      }
+    })
+  }
+})
+
+app.get('/api/shorturl/:id?', (req, res) => {
+  let short_url = req.params.id;
+  let entry = urls.find(obj => obj.short_url == short_url);
+
+  if (entry) {
+    let long_url = entry['original_url'];
+    if (long_url) {
+      res.redirect(long_url);
+    } else {
+      res.json({"error": "Not Found."})
+    }
+  } else {
+      res.json({"error": "Not Found."})
+    }
+})
 
 // listen for requests :)
 let listener = app.listen(process.env.PORT, () => {

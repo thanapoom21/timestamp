@@ -4,7 +4,7 @@
   "description": "Backend project involving JavaScript for functionality. Request and response are used frequently.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "keywords": [
     "timestamp",
@@ -15,6 +15,7 @@
   "author": "Thanapoom Phithakjarukorn",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "^4.18.2"
   },
@@ -25,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/thanapoom21/timestamp/issues"
   },
-  "homepage": "https://github.com/thanapoom21/timestamp#readme"
+  "homepage": "https://github.com/thanapoom21/timestamp#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
 }
