@@ -9,6 +9,7 @@ const app = express();
 const bodyParser = require("body-parser")
 const dns = require('dns')
 const mongoose = require('mongoose')
+const fileUpload = require('express-fileupload');
 require('dotenv').config()
 
 // This section is where DB code lives.
@@ -45,6 +46,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
+
+app.use(fileUpload({
+  createParentPath: true
+}))
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", (req, res) => {
@@ -208,6 +213,29 @@ app.get('/api/users/:_id/logs', (req, res) => {
         console.error(err)
       });
   })
+})
+
+app.post('/api/fileanalyse', (req, res) => {
+  try {
+    if (!req.files) {
+      res.send({
+        status: false,
+        message: "No file uploaded"
+      })
+    } else {
+      let uploadedFile = req.files.upfile;
+      res.send({
+        status: true,
+        message: 'File is uploaded',
+        name: uploadedFile.name,
+        type: uploadedFile.mimetype,
+        size: uploadedFile.size
+        
+      });
+    }
+  } catch(err) {
+    res.status(500).send(err)
+  }
 })
 
 // listen for requests :)
