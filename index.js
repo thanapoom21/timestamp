@@ -9,8 +9,11 @@ const app = express();
 const bodyParser = require("body-parser")
 const dns = require('dns')
 const mongoose = require('mongoose')
-const fileUpload = require('express-fileupload');
 require('dotenv').config()
+
+const fileMetadata = require('./src/pages/file-metadata')
+
+app.use('/api/file-metadata', fileMetadata)
 
 // This section is where DB code lives.
 mongoose.connect(process.env['MONGO_URI'], { useNewUrlParser: true, useUnifiedTopology: true })
@@ -47,13 +50,24 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.use(fileUpload({
-  createParentPath: true
-}))
-
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/views/index.html");
+  res.sendFile(__dirname + "/src/views/index.html");
+});
+app.get("/timestamp", (req, res) => {
+  res.sendFile(__dirname + "/src/views/timestamp.html");
+});
+app.get("/request-header-parser", (req, res) => {
+  res.sendFile(__dirname + "/src/views/request-header-parser.html");
+});
+app.get("/url-shortener", (req, res) => {
+  res.sendFile(__dirname + "/src/views/url-shortener.html");
+});
+app.get("/exercise-tracker", (req, res) => {
+  res.sendFile(__dirname + "/src/views/exercise-tracker.html");
+});
+app.get("/file-metadata", (req, res) => {
+  res.sendFile(__dirname + "/src/views/file-metadata.html");
 });
 
 // your first API endpoint...
@@ -143,12 +157,16 @@ app.get('/api/users', async (req, res) => {
 })
 
 app.post('/api/users', async (req, res) => {
-  let newUser = await User.create({ username: req.body.username })
+  try {
+    let newUser = await User.create({ username: req.body.username })
 
-  res.json({
-    username: newUser.username,
-    _id: newUser._id,
-  })
+    res.json({
+      username: newUser.username,
+      _id: newUser._id,
+    })
+  } catch (err) {
+    res.status(500).send({ error: err, message: 'The user has already been created.' })
+  }
 })
 
 app.post('/api/users/:_id/exercises', (req, res) => {
@@ -213,29 +231,6 @@ app.get('/api/users/:_id/logs', (req, res) => {
         console.error(err)
       });
   })
-})
-
-app.post('/api/fileanalyse', (req, res) => {
-  try {
-    if (!req.files) {
-      res.send({
-        status: false,
-        message: "No file uploaded"
-      })
-    } else {
-      let uploadedFile = req.files.upfile;
-      res.send({
-        status: true,
-        message: 'File is uploaded',
-        name: uploadedFile.name,
-        type: uploadedFile.mimetype,
-        size: uploadedFile.size
-        
-      });
-    }
-  } catch(err) {
-    res.status(500).send(err)
-  }
 })
 
 // listen for requests :)

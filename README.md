@@ -8,4 +8,6 @@ These are microservice projects.
 - Exercise Tracker
 - File Metadata
 
+The File Metadata routes has been moved to its own module. Other routes will be modified and moved soon.
+
 All of the credit goes to [FreeCodeCamp](https://www.freecodecamp.org)
