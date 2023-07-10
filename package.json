@@ -1,7 +1,7 @@
 {
-  "name": "timestamp",
-  "version": "1.2.0",
-  "description": "Backend project involving JavaScript for functionality. Request and response are used frequently.",
+  "name": "Backend Exercises",
+  "version": "1.3.0",
+  "description": "Backend projects Built by JavaScript. Request and response are used frequently.",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
