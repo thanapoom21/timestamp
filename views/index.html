@@ -11,9 +11,10 @@
 </head>
 
 <body>
-  <h1>Timestamp Microservice</h1>
+  <h1>Backend Projects</h1>
   <hr />
   <div class="container">
+    <h1>Timestamp</h1>
     <h3>Example Usage:</h3>
     <ul>
       <li><a href="api/timestamp/2015-12-25">[project url]/api/timestamp/2015-12-25</a></li>
@@ -30,9 +31,10 @@
       </code>
     </p>
   </div>
+  <hr />
 
   <div class="container">
-    <h2>Request Header Parser Microservice</h2>
+    <h1>Request Header Parser</h1>
 
     <h3>Example Usage:</h3>
     <p>
@@ -49,6 +51,62 @@
         }
       </code>
     </p>
+  </div>
+  <hr />
+
+  <div class="container">
+    <h1>URL Shortener</h1>
+    <form action="api/shorturl" method="POST">
+      <fieldset>
+        <legend>URL Shortener</legend>
+        <label for="url_input">URL:</label>
+        <input id="url_input" type="text" name="url" placeholder="https://www.freecodecamp.org/" />
+        <input type="submit" value="Post" />
+      </fieldset>
+    </form>
+  </div>
+  <hr />
+
+  <div class="container">
+    <h1>Exercise tracker</h1>
+    <form action="/api/users" method="post">
+      <h3>Create a New User</h3>
+      <p><code>POST /api/users</code></p>
+      <input id="uname" type="text" name="username" placeholder="username" />
+      <input type="submit" value="Submit" />
+    </form>
+    <form id="exercise-form" method="post">
+      <h3>Add exercises</h3>
+      <p><code>POST /api/users/:_id/exercises</code></p>
+      <input id="uid" type="text" name=":_id" placeholder=":_id" />
+      <input id="desc" type="text" name="description" placeholder="description*" />
+      <input id="dur" type="text" name="duration" placeholder="duration* (mins.)" />
+      <input id="date" type="text" name="date" placeholder="date (yyyy-mm-dd)" />
+      <input type="submit" value="Submit" />
+    </form>
+    <p>
+      <strong>GET user's exercise log: </strong>
+      <code>GET /api/users/:_id/logs?[from][&amp;to][&amp;limit]</code>
+    </p>
+    <p><strong>[ ]</strong> = optional</p>
+    <p><strong>from, to</strong> = dates (yyyy-mm-dd); <strong>limit</strong> = number</p>
+  </div>
+  <hr />
+
+  <div class="container">
+    <h1>File Metadata</h1>
+
+    <h3>Usage:</h3>
+    <p>
+      Please Upload a File ...
+    </p>
+    <div class="view">
+      <h4 id="output"></h4>
+      <form enctype="multipart/form-data" method="POST" action="/api/fileanalyse">
+        <input id="inputfield" type="file" name="upfile">
+        <input id="button" type="submit" value="Upload">
+      </form>
+    </div>
   </div>
 
   <div class="footer">
