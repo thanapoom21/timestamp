@@ -4,6 +4,9 @@ const cors = require("cors");
 const app = express();
 require('dotenv').config()
 
+app.set('views', './views')
+app.set('view engine', 'pug')
+
 // so that your API is remotely testable by FCC
 app.use(cors({ optionsSuccessStatus: 200 })); // some legacy browsers choke on 204
 
@@ -16,25 +19,44 @@ const requestHeader = require('./src/pages/request-header-parser')
 const timeStamp = require('./src/pages/timestamp')
 const urlShortener = require('./src/pages/url-shortener')
 
-// http://expressjs.com/en/starter/basic-routing.html
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/src/views/index.html");
-});
+app.get('/', (req, res) => {
+  res.render('index')
+})
 app.get("/timestamp", (req, res) => {
-  res.sendFile(__dirname + "/src/views/timestamp.html");
+  res.render('timestamp');
 });
 app.get("/request-header-parser", (req, res) => {
-  res.sendFile(__dirname + "/src/views/request-header-parser.html");
+  res.render('request-header-parser');
 });
 app.get("/url-shortener", (req, res) => {
-  res.sendFile(__dirname + "/src/views/url-shortener.html");
+  res.render('url-shortener');
 });
 app.get("/exercise-tracker", (req, res) => {
-  res.sendFile(__dirname + "/src/views/exercise-tracker.html");
+  res.render('exercise-tracker');
 });
 app.get("/file-metadata", (req, res) => {
-  res.sendFile(__dirname + "/src/views/file-metadata.html");
+  res.render('file-metadata');
 });
+
+// http://expressjs.com/en/starter/basic-routing.html
+// app.get("/", (req, res) => {
+//   res.sendFile(__dirname + "/src/views/index.html");
+// });
+// app.get("/timestamp", (req, res) => {
+//   res.sendFile(__dirname + "/src/views/timestamp.html");
+// });
+// app.get("/request-header-parser", (req, res) => {
+//   res.sendFile(__dirname + "/src/views/request-header-parser.html");
+// });
+// app.get("/url-shortener", (req, res) => {
+//   res.sendFile(__dirname + "/src/views/url-shortener.html");
+// });
+// app.get("/exercise-tracker", (req, res) => {
+//   res.sendFile(__dirname + "/src/views/exercise-tracker.html");
+// });
+// app.get("/file-metadata", (req, res) => {
+//   res.sendFile(__dirname + "/src/views/file-metadata.html");
+// });
 
 app.use('/api/users', exerciseTracker)
 app.use('/api/file-metadata', fileMetadata)

@@ -1,0 +1,13 @@
+extends layout.pug 
+
+block main-content 
+  .container.mx-auto
+    h2.text-3xl File Metadata
+    h3 Usage:
+    p
+      | Please Upload a File ...
+    .view
+      h4#output
+      form(enctype='multipart/form-data' method='POST' action='/api/file-metadata')
+        input#inputfield(type='file' name='upfile')
+        input#button(type='submit' value='Upload')

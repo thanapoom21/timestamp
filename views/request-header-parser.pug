@@ -1,0 +1,18 @@
+extends layout.pug 
+
+block main-content 
+  .container.mx-auto
+    h2.text-3xl Request Header Parser
+    h3 Example Usage:
+    p
+      a(href='api/request-header-parser') [project url]/api/request-header-parser
+    h3 Example Output:
+    p
+      code
+        | {
+        | "ipaddress":"this could be different",
+        br
+        | "language":"en-US,en;q=0.5",
+        br
+        | "software":"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0"
+        | }
