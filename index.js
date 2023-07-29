@@ -10,11 +10,11 @@ app.use(cors({ optionsSuccessStatus: 200 })); // some legacy browsers choke on 2
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static("public"));
 
-const exerciseTracker = require('./src/pages/exercise-tracker')
-const fileMetadata = require('./src/pages/file-metadata')
-const requestHeader = require('./src/pages/request-header-parser')
-const timeStamp = require('./src/pages/timestamp')
-const urlShortener = require('./src/pages/url-shortener')
+const exerciseTracker = require('./src/projects/exercise-tracker')
+const fileMetadata = require('./src/projects/file-metadata')
+const requestHeader = require('./src/projects/request-header-parser')
+const timeStamp = require('./src/projects/timestamp')
+const urlShortener = require('./src/projects/url-shortener')
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", (req, res) => {

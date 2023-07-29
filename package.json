@@ -4,7 +4,10 @@
   "description": "Backend projects Built by JavaScript. Request and response are used frequently.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
     "watchcss": "npx tailwindcss -i ./public/input.css -o ./public/style.css --watch"
   },
   "keywords": [
@@ -22,7 +25,10 @@
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
     "mongoose": "^7.3.1",
-    "multer": "^1.4.5-lts.1"
+    "multer": "^1.4.5-lts.1",
+    "next": "^13.4.11",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "repository": {
     "type": "git",
@@ -33,7 +39,11 @@
   },
   "homepage": "https://github.com/thanapoom21/timestamp#readme",
   "devDependencies": {
+    "@types/react": "18.2.15",
+    "autoprefixer": "^10.4.14",
     "nodemon": "^2.0.22",
-    "tailwindcss": "^3.3.2"
+    "postcss": "^8.4.27",
+    "tailwindcss": "^3.3.3",
+    "typescript": "5.1.6"
   }
 }
