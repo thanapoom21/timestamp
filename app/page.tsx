@@ -17,9 +17,9 @@ export default function Page() {
           <a href="/exercise-tracker" className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
             Exercise tracker
           </a>
-          <a href="/file-metadata" className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+          {/* <a href="/file-metadata" className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
             File Metadata
-          </a>
+          </a> */}
         </div>
       </div>
     </>
