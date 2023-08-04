@@ -6,6 +6,10 @@ export const urls: {
   original_url: string,
   short_url: number
 }[] = [];
+let newURL: {
+  original_url: string,
+  short_url: number
+}
 
 export async function POST(request: NextRequest) {
   let formData = await request.formData()
@@ -13,10 +17,6 @@ export async function POST(request: NextRequest) {
   let urlNoTrailingSlash = url.replace(/\/*$/, '');
   let domainWithPath = urlNoTrailingSlash.replace(/^https?:\/\//, '')
   let domainName = domainWithPath.split('/')[0]
-  let newURL: {
-    original_url: string,
-    short_url: number
-  }
 
   if (domainName == "") {
     return NextResponse.json(`Domain name is not provided.`)

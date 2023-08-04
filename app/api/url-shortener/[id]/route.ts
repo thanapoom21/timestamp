@@ -8,11 +8,13 @@ export async function GET(request: NextRequest, { params }: { params: { id: numb
 
   if (entry) {
     let long_url = entry.original_url;
-    
+
     if (long_url) {
       return NextResponse.redirect(long_url);
     } else {
-      return NextResponse.json({ "error": "Not Found." })
+      return NextResponse.json({ "error": "The original url doesn't exist." })
     }
+  } else {
+    return NextResponse.json({ "error": "The short url doesn't exist." })
   }
 }
