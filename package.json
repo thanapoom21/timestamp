@@ -39,6 +39,7 @@
   },
   "homepage": "https://github.com/thanapoom21/timestamp#readme",
   "devDependencies": {
+    "@types/multer": "^1.4.7",
     "@types/react": "18.2.15",
     "autoprefixer": "^10.4.14",
     "nodemon": "^2.0.22",
