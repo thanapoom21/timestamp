@@ -1,5 +1,19 @@
+'use client'
+
+import { useState } from "react"
 
 export default function Page() {
+  const [userId, setUserId] = useState('')
+  const handleSubmit = async (event: {
+    target: any,
+    preventDefault: () => void
+  }) => {
+    event.preventDefault()
+
+    setUserId(event.target.uid.value)
+    console.log(event.target.uid.value)
+  }
+
   return (
     <>
       <a href="/">
@@ -8,13 +22,13 @@ export default function Page() {
       <hr />
       <div className="container mx-auto">
         <h2 className="text-3xl">Exercise tracker</h2>
-        <form action="/api/exercise-tracker" method="post">
+        <form className="m-1" action="/api/exercise-tracker" method="post">
           <h3>Create a New User</h3>
           <p><code>POST /api/exercise-tracker</code></p>
           <input id="uname" type="text" name="username" placeholder="username" />
           <input type="submit" value="Submit" />
         </form>
-        <form id="exercise-form" method="post">
+        <form id="exercise-form" onSubmit={handleSubmit} action={`/api/exercise-tracker/${userId}/exercises`} method="post">
           <h3>Add exercises</h3>
           <p><code>POST /api/exercise-tracker/:_id/exercises</code></p>
           <input id="uid" type="text" name=":_id" placeholder=":_id" />
