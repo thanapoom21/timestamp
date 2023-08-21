@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest } from "next/server";
 import dbConnect from '../../../lib/dbConnect'
 
 import { Schema, model, models } from "mongoose";
@@ -44,15 +44,20 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  await dbConnect();
   try {
     const formData = await request.formData()
-    let newUser = await User.create({ username: formData.get('username') })
+    let username = formData.get('username')
+    if (!username) {
+      return NextResponse.json({ error: 'The username has to be provided.' })
+    } else {
+      let newUser = await User.create({ username })
 
-    console.log(newUser)
-    return NextResponse.json({
-      username: newUser.username,
-      _id: newUser._id,
-    })
+      return NextResponse.json({
+        username: newUser.username,
+        _id: newUser._id,
+      })
+    }
   } catch (err) {
     return NextResponse.json({ error: err, message: 'The user has already been created.' })
   }
