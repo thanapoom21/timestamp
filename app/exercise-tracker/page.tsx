@@ -4,14 +4,11 @@ import { useState } from "react"
 
 export default function Page() {
   const [userId, setUserId] = useState('')
-  const handleSubmit = async (event: {
-    target: any,
-    preventDefault: () => void
-  }) => {
-    event.preventDefault()
-
+  
+  async function handleSubmit(event: {
+    target: any
+  }) {
     setUserId(event.target.uid.value)
-    console.log(event.target.uid.value)
   }
 
   return (
