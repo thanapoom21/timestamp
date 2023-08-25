@@ -1,36 +1,7 @@
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 import dbConnect from '../../../lib/dbConnect'
-
-import { Schema, model, models } from "mongoose";
-
-// 1. Create an interface representing a document in MongoDB.
-interface IUser {
-  username: {
-    type: String,
-    require: true,
-    unique: true
-  };
-}
-
-const userSchema = new Schema<IUser>({
-  username: {
-    type: String,
-    require: true,
-    unique: true
-  }
-})
-
-const exerciseSchema = new Schema({
-  user_id: { type: String, required: true },
-  description: { type: String, required: true },
-  duration: { type: Number, required: true },
-  date: { type: Date },
-})
-
-// Checking if the model exists then use it, otherwise create it.
-let User = models.User || model('User', userSchema);
-let Exercise = models.Exercise || model('Exercise', exerciseSchema);
+import User from '../../../models/userSchema'
 
 export async function GET(request: NextRequest) {
   await dbConnect();
